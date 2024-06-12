@@ -2,41 +2,136 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --background: 200 20% 98%;
-    --btn-background: 200 10% 91%;
-    --btn-background-hover: 200 10% 89%;
-    --foreground: 200 50% 3%;
-  }
 
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --background: 200 50% 3%;
-      --btn-background: 200 10% 9%;
-      --btn-background-hover: 200 10% 12%;
-      --foreground: 200 20% 96%;
-    }
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@layer base {
-  * {
-    @apply border-foreground/20;
-  }
-}
 
-.animate-in {
-  animation: animateIn 0.3s ease 0.15s both;
-}
-
-@keyframes animateIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .max-container {
+    @apply w-full mx-auto max-w-[1440px];
+  }
+
+  .padding-container {
+    @apply px-6 lg:px-16 3xl:px-0;
+  }
+
+  .flexCenter {
+    @apply flex items-center justify-center
+  }
+
+  .flexBetween {
+    @apply flex items-center justify-between
+  }
+
+  .flexStart {
+    @apply flex items-center justify-start
+  }
+
+  .flexEnd {
+    @apply flex items-center justify-end
+  }
+
+  /* BUTTONS */
+  .btn_pink { 
+    @apply   bg-[#FBA88F] px-8 py-3 text-gray-90
+  }
+  .btn_white_text  { 
+    @apply  border-white bg-white px-8 py-3 text-gray-90
+  }
+  .btn_green  { 
+    @apply  border-green-50 bg-green-50 px-8 py-5 text-white
+  }
+  .btn_dark_pink { 
+    @apply  bg-green-90 px-8 py-4 text-white transition-all hover:bg-black
+  }
+  .btn_dark_green_outline  { 
+    @apply border-gray-20 bg-green-90 px-8 py-5 text-white
+  }
+  .btn_green  { 
+    @apply bg-green-50 px-4 py-4 text-white hover:bg-green-400
+  }
+   /* FONTS */
+   .regular-64 {
+    @apply text-[64px] font-[400] leading-[120%];
+  }
+
+  .regular-40 {
+    @apply text-[40px] font-[400] leading-[120%];
+  }
+
+  .regular-32 {
+    @apply text-[32px] font-[400];
+  }
+
+  .regular-24 {
+    @apply text-[24px] font-[400];
+  }
+
+  .regular-20 {
+    @apply text-[20px] font-[400];
+  }
+
+  .regular-18 {
+    @apply text-[18px] font-[400];
+  }
+
+  .regular-16 {
+    @apply text-[16px] font-[400];
+  }
+
+  .regular-14 {
+    @apply text-[14px] font-[400];
+  }
+
+  .medium-14 {
+    @apply text-[14px] font-[600];
+  }
+
+  .bold-88 {
+    @apply text-[88px] font-[700] leading-[120%];
+  }
+
+  .bold-64 {
+    @apply text-[64px] font-[700] leading-[120%];
+  }
+
+  .bold-52 {
+    @apply text-[52px] font-[700] leading-[120%];
+  }
+
+  .bold-40 {
+    @apply text-[40px] font-[700] leading-[120%];
+  }
+
+  .bold-32 {
+    @apply text-[32px] font-[700] leading-[120%];
+  }
+
+  .bold-20 {
+    @apply text-[20px] font-[700];
+  }
+
+  .bold-18 {
+    @apply text-[18px] font-[700];
+  }
+
+  .bold-16 {
+    @apply text-[16px] font-[700];
+  }
+  
+  .bold-10 {
+    @apply text-[10px] font-[700];
+  }
+
+  .bold-12 {
+    @apply text-[16px] font-[600];
   }
 }

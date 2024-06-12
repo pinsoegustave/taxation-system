@@ -4,29 +4,11 @@ import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { SubmitButton } from "./submit-button";
 
-export default function Login({
+export default function Signup({
   searchParams,
 }: {
   searchParams: { message: string };
 }) {
-  const signIn = async (formData: FormData) => {
-    "use server";
-
-    const email = formData.get("email") as string;
-    const password = formData.get("password") as string;
-    const supabase = createClient();
-
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-    if (error) {
-      return redirect("/login?message=Could not authenticate user");
-    }
-
-    return redirect("/protected");
-  };
 
   const signUp = async (formData: FormData) => {
     "use server";
@@ -34,8 +16,14 @@ export default function Login({
     const origin = headers().get("origin");
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
+    const confirmPassword = formData.get("confirmPassword") as string;
+    
+    if (password !== confirmPassword) {
+        redirect('/sign-up?message=Passwords do not match');
+        }
+    
     const supabase = createClient();
-
+        
     const { error } = await supabase.auth.signUp({
       email,
       password,
@@ -45,16 +33,15 @@ export default function Login({
     });
 
     if (error) {
-      return redirect("/login?message=Could not authenticate user");
+      return redirect("/sign-up?message=Could not authenticate user");
     }
 
-    return redirect("/login?message=Check email to continue sign in process");
+    return redirect(`/confirm?message=Check email({email}) to continue sign in process`);
   };
 
   return (
     <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
-
-      <form className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground">
+      <form action={signUp} className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground">
         <label className="text-md" htmlFor="email">
           Email
         </label>
@@ -69,24 +56,36 @@ export default function Login({
         </label>
         <input
           className="rounded-md px-4 py-2 bg-inherit border mb-6"
-          type="password"
+          type="text"
           name="password"
-          placeholder="••••••••"
+          placeholder="Password"
+          required
+        />
+        <label className="text-md" htmlFor="password">
+          Confirm Password
+        </label>
+        <input
+          className="rounded-md px-4 py-2 bg-inherit border mb-6"
+          type="text"
+          name="confirmPassword"
+          placeholder="Confirm Password"
           required
         />
         <SubmitButton
-          formAction={signIn}
-          className="bg-green-700 rounded-md px-4 py-2 text-foreground mb-2"
-          pendingText="Signing In..."
+          formAction={signUp}
+          className="border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2"
+          pendingText="Signing Up..."
         >
-          Sign In
+          Sign Up
         </SubmitButton>
         {searchParams?.message && (
-          <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">
+          <p className="mt-4 p-4 bg-foreground/10 text-red-800 text-center">
             {searchParams.message}
           </p>
         )}
-        <p>New to the platform?<Link href="/sign-up" className="text-blue-400"> Create account here.</Link></p>
+        <Link href="/login" className="rounded-md no-underline text-foreground text-sm">
+        Already have an account? Sign In
+        </Link>
       </form>
     </div>
   );
