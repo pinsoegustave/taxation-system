@@ -6,8 +6,8 @@ export default function signup({
     searchParams: { message: string };
 }) {
   return (
-    <div className='w-full px-8 sm:max-w-lg mx-auto mt-8'>
-        <p className='text-foreground'>{searchParams.message}</p>
+    <div className='w-full px-8 h-[16.5vw] flexCenter mx-auto py-32 bg-green-50'>
+        <p className='bold-20 text-foreground'>{searchParams.message}</p>
     </div>
   )
 }

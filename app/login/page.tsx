@@ -28,32 +28,9 @@ export default function Login({
     return redirect("/protected");
   };
 
-  const signUp = async (formData: FormData) => {
-    "use server";
-
-    const origin = headers().get("origin");
-    const email = formData.get("email") as string;
-    const password = formData.get("password") as string;
-    const supabase = createClient();
-
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        emailRedirectTo: `${origin}/auth/callback`,
-      },
-    });
-
-    if (error) {
-      return redirect("/login?message=Could not authenticate user");
-    }
-
-    return redirect("/login?message=Check email to continue sign in process");
-  };
-
   return (
-    <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
-
+    <div className="flex-1 flex flex-col w-full mx-auto px-8 sm:max-w-md justify-center gap-2 py-10">
+      <h2 className="bold-32">Login to your account</h2>
       <form className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground">
         <label className="text-md" htmlFor="email">
           Email
@@ -76,7 +53,7 @@ export default function Login({
         />
         <SubmitButton
           formAction={signIn}
-          className="bg-green-700 rounded-md px-4 py-2 text-foreground mb-2"
+          className="bg-green-50 text-white rounded-md px-4 py-2 text-foreground mb-2 hover:text-black"
           pendingText="Signing In..."
         >
           Sign In
@@ -86,7 +63,8 @@ export default function Login({
             {searchParams.message}
           </p>
         )}
-        <p>New to the platform?<Link href="/sign-up" className="text-blue-400"> Create account here.</Link></p>
+        <Link href={'/forgot-password'} className="text-green-50">Forgot Password?</Link>
+        <p>New to the platform?<Link href="/sign-up" className="text-blue-400"> Create your account here.</Link></p>
       </form>
     </div>
   );

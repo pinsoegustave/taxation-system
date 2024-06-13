@@ -16,13 +16,15 @@ const Header = () => {
   return (
     <nav className="flexBetween padding-container max-container relative z-10 py-5">
       <div className=" bg-black">
+        <Link href={'/'}>
         <Image
           src={"/Numetric.png"}
           alt="logo"
           priority
           width={200}
           height={100}
-        />
+          />
+          </Link>
       </div>
       <div className="flexCenter">
         <ul className="hidden h-full lg:flex gap-4 text-black">
