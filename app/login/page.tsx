@@ -25,7 +25,7 @@ export default function Login({
       return redirect("/login?message=Could not authenticate user");
     }
 
-    return redirect("/user-administration");
+    return redirect("/user-dashboard");
   };
 
   return (
@@ -37,6 +37,7 @@ export default function Login({
         </label>
         <input
           className="rounded-md px-4 py-2 bg-inherit border mb-6"
+          type="email"
           name="email"
           placeholder="you@example.com"
           required
