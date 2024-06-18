@@ -1,0 +1,17 @@
+[
+    {
+        "name" : "Man Utd",
+        "age" : 32,
+        "id" : 1
+    },
+    {
+        "name" : "Chelsea",
+        "age" : 90,
+        "id" : 23
+    },
+    {
+        "name" : "Hannouver",
+        "age": 23,
+        "id": 9
+    }
+]

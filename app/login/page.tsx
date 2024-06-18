@@ -22,7 +22,7 @@ export default function Login({
     });
 
     if (error) {
-      return redirect("/login?message=Could not authenticate user");
+      return redirect("/login?message=Check Email or Password are incorrect!");
     }
 
     return redirect("/user-dashboard");
