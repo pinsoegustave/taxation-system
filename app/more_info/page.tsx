@@ -3,12 +3,20 @@ import AuthButton from '@/components/AuthButton'
 import Button from '@/components/Button'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 const page = () => {
-  const handleSubmit = async () => {
-    console.log("data");
-  };
+  const [ isVisible, setIsVisible ] = useState({ id: "inputOne", });
+
+  useEffect(() => {
+    console.log(isVisible);
+  }, [isVisible]);
+
+  const toggleDiv = (e: any) => {
+    setIsVisible({
+      id: e.target.id,
+    });
+  }
   return (
     <div className='padding-container max-container'>
       <div className="w-full">
@@ -33,7 +41,7 @@ const page = () => {
         <p className='text-center'>Take your time and fill the form below.</p>
         <div className='w-full md:w-[40vw] border border-red-300 mx-auto p-4'>
         <form action="" method="post" className="">
-          <div className='border border-blue-500'>
+          <div className={isVisible.id === "inputOne border border-blue-500" ? `inputOne` : `inputOne hidden` } >
             <h2 className='bold-20 text-center underline text-green-50'>1. Personal Information</h2>
             <div className="w-full ">
               <label htmlFor="" className="">
@@ -70,7 +78,11 @@ const page = () => {
                 className="font-[300] bg-[#63798D] py-2 px-4 outline-none text-white placeholder:text-white w-full"
               />
             </div>
-            {/* <div className="flex flex-col py-2">
+            <button id='inputTwo'
+              onClick={(e) => {toggleDiv(e); }} type="submit" title="Submit" className='btn_dark_pink'>Next</button>
+          </div>
+          <div  className={ isVisible.id === "inputTwo border border-yellow-500" ? `inputTwo` : "inputTwo hidden" }>
+            <div className="flex flex-col py-2">
               <label htmlFor="" className="">
                 Subject<sub>(required)</sub>
               </label>
@@ -88,12 +100,16 @@ const page = () => {
                 id="message"
                 className="font-[300] bg-[#63798D] py-2 px-4 outline-none text-white placeholder:text-white"
               />
-            </div> */}
-            <div className="ml-32 mt-4">
-              <button onClick={() => console.log("data")} type="submit" title="Submit" className='btn_dark_pink'>Next</button>
+            </div>
+            <div className=" mt-4 flexBetween gap-10">
+              <button 
+              onClick={(e) => {toggleDiv(e); }} type="submit" title="Submit" className='btn_dark_pink'>Back</button>
+              <button 
+              onClick={(e) => {toggleDiv(e); }} type="submit" title="Submit" className='btn_dark_pink'>Next</button>
               {/* <Toaster richColors /> */}
             </div>
-            </div>
+          </div>
+
           </form>
         </div>
       </div>
