@@ -1,4 +1,3 @@
-"use client"
 import AuthButton from '@/components/AuthButton'
 import Button from '@/components/Button'
 import { BUSINESS_TYPES } from '@/index'

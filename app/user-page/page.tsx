@@ -1,11 +1,22 @@
 import AuthButton from '@/components/AuthButton'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 import { HelpCircle } from 'react-feather'
+import Modal from './Modal'
 
-const page = () => {
+interface MyComponentProps {}
+const page: React.FC<MyComponentProps> = () => {
 
+  const [ open, setOpen ] = useState<boolean>(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  }
   return (
     <div className="max-container padding-container flex-1 w-full flex flex-col gap-20 items-center text-black">
       <div className="w-full">
@@ -32,8 +43,25 @@ const page = () => {
       <div className='p-4 w-full md:max-w-[40vw] border border-foreground/10 rounded-md'>
         <h2 className='bold-20'>Umusoro ku nyungu</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore ea eaque quas ipsa explicabo. At voluptatibus adipisci, aperiam impedit optio, nostrum obcaecati mollitia rerum officia tempora itaque doloremque officiis nesciunt!</p>  
-        <span>Wifuza ko twagufasha? <Link href={'/more_info'} className='text-green-50 bg-gray-200 p-2 hover:underline'>Kanda hano</Link></span>  
+        <span>Wifuza ko twagufasha? <Link href={'/more_info'} className='text-green-50 bg-gray-200 p-2 hover:underline' onClick={() => setOpen(true)}>Kanda hano</Link></span>  
     </div>
+    <Modal open={open} onClose={() => setOpen(false)}>
+      <div className='text-center w-56'>
+        <form action="" method="post">
+        <div className="flex flex-col py-2">
+              <label htmlFor="" className="">
+                Country:<sub>(required)</sub>
+              </label>
+              <input
+                type="text"
+                disabled
+                value="Rwanda"
+                className="font-[300] bg-[#63798D] py-2 px-4 outline-none text-white placeholder:text-white w-full"
+              />
+            </div>
+        </form>
+      </div>
+    </Modal>
       <div className='p-4 w-full md:max-w-[40vw] border border-red-300 rounded-md'>
         <h2 className='bold-20'>Umusoro ku nyungu</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore ea eaque quas ipsa explicabo. At voluptatibus adipisci, aperiam impedit optio, nostrum obcaecati mollitia rerum officia tempora itaque doloremque officiis nesciunt!</p>  
@@ -54,9 +82,10 @@ const page = () => {
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore ea eaque quas ipsa explicabo. At voluptatibus adipisci, aperiam impedit optio, nostrum obcaecati mollitia rerum officia tempora itaque doloremque officiis nesciunt!</p>  
         <span>Wifuza ko twagufasha? <button className='text-green-50 bg-gray-200'>Iyandikishe hano</button></span>  
     </div>
-    <div className='p-4 w-full md:max-w-[40vw] border border-red-300 rounded-md text-center py-24'>
-        <HelpCircle className='h-50 w-50' height={100} width={200} />  
-        Wifuza ko twagukorera imisoro yose ubonye aho hejuru?
+    <div className='p-4 w-full md:max-w-[40vw] mx-auto border border-red-300 rounded-md text-center py-10'>
+        <HelpCircle className='h-50 w-50 mx-auto py-2' height={100} width={200} />  
+        <p>Waba ufite ubundi butumwa wifuza kudusangiza?</p>
+        <button className='underline text-green-500'>Kanda hano</button>
     </div>
     </div>
       </div>
