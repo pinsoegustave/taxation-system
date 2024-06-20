@@ -26,3 +26,36 @@ export const NAVLINKS  = [
         'label': 'contact'
     },
 ]
+
+export const BUSINESS_TYPES = [
+    {
+        id: 1,
+        type: "Sole proprietorship",
+        value: "Sole proprietorship",
+    },
+    {
+        id: 2,
+        type: "General partnerships",
+        value: "General partnerships",
+    },
+    {
+        id: 3,
+        type: "Limited Liability Company",
+        value: "Limited liability Company",
+    },
+    {
+        id: 4,
+        type: "Limited partnership",
+        value: "Limited partnership",
+    },
+    {
+        id: 5,
+        type: "Limited Liability partnership",
+        value: "Limited Liability partnership",
+    },
+    {
+        id: 6,
+        type: "Business corporations",
+        value: "Business corporations",
+    },
+]
